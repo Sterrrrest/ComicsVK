@@ -1,5 +1,4 @@
 import telebot
-import os
 
 from environs import Env
 
@@ -23,5 +22,4 @@ def send_post(file_path, comment, response_img):
 
     bot.send_message(chat_id=chat_id, text=comment)
 
-    os.remove(file_path)
 

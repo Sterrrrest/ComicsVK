@@ -1,5 +1,6 @@
 import random
 import requests
+import os
 
 from pathlib import Path
 from functions import send_post
@@ -28,4 +29,4 @@ if __name__ == '__main__':
     comment = response_random_comics.json()['alt']
 
     send_post(file_path, comment, response_img)
-
+    os.remove(file_path)
