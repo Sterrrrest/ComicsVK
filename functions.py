@@ -9,8 +9,8 @@ def send_post(file_path, comment, response_img):
     env = Env()
     env.read_env()
     chat_id = env.str('CLIENT_ID')
-    token_tg = env.str('TOKEN_TG')
-    bot = telebot.TeleBot(token=token_tg)
+    tg_token = env.str('TG_TOKEN')
+    bot = telebot.TeleBot(token=tg_token)
 
     with open(file_path, 'wb') as file:
         file.write(response_img.content)
