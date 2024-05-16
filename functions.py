@@ -3,12 +3,14 @@ import os
 
 from environs import Env
 
-env = Env()
-env.read_env()
 
-chat_id = env.str('CLIENT_ID')
-token_tg = env.str('TOKEN_TG')
-bot = telebot.TeleBot(token=token_tg)
+if __name__ == '__main__':
+    env = Env()
+    env.read_env()
+
+    chat_id = env.str('CLIENT_ID')
+    token_tg = env.str('TOKEN_TG')
+    bot = telebot.TeleBot(token=token_tg)
 
 
 def send_post(file_path, comment, response_img):
