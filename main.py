@@ -26,9 +26,10 @@ if __name__ == '__main__':
         response_img = requests.get(response_random_comics.json()['img'])
         response_img.raise_for_status()
 
-        filename = response_random_comics.json()['img'].split(sep='/')[-1]
+        response_random_comics_json = response_random_comics.json()
+        filename = response_random_comics_json['img'].split(sep='/')[-1]
         file_path = f'{dir}/{filename}'
-        comment = response_random_comics.json()['alt']
+        comment = response_random_comics_json['alt']
 
         send_post(file_path, comment, response_img)
 
