@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
         response_random_url = f'https://xkcd.com/{random_comics}/info.0.json'
         response_random_comics = requests.get(response_random_url)
+        response_random_comics.raise_for_status()
 
         response_img = requests.get(response_random_comics.json()['img'])
         response_img.raise_for_status()
