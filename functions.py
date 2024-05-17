@@ -3,11 +3,9 @@ import requests
 import random
 
 
-
 def send_post(file_path, comment, response_img, chat_id, tg_token):
 
     bot = telebot.TeleBot(token=tg_token)
-
     with open(file_path, 'wb') as file:
         file.write(response_img.content)
 
@@ -15,6 +13,7 @@ def send_post(file_path, comment, response_img, chat_id, tg_token):
         bot.send_document(chat_id=chat_id, document=file)
 
     bot.send_message(chat_id=chat_id, text=comment)
+
 
 def get_random_comics(url):
 
