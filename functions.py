@@ -2,16 +2,10 @@ import telebot
 import requests
 import random
 
-from environs import Env
 
 
+def send_post(file_path, comment, response_img, chat_id, tg_token):
 
-def send_post(file_path, comment, response_img):
-
-    env = Env()
-    env.read_env()
-    chat_id = env.str('CLIENT_ID')
-    tg_token = env.str('TG_TOKEN')
     bot = telebot.TeleBot(token=tg_token)
 
     with open(file_path, 'wb') as file:

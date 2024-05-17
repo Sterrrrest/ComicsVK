@@ -1,11 +1,19 @@
 import requests
 import os
 
+
+from environs import Env
 from pathlib import Path
 from functions import send_post, get_random_comics, get_filepath
 
 
 if __name__ == '__main__':
+
+    env = Env()
+    env.read_env()
+    chat_id = env.str('CLIENT_ID')
+    tg_token = env.str('TG_TOKEN')
+
 
     dir = 'pictures'
     Path(dir).mkdir(parents=True, exist_ok=True)
@@ -23,7 +31,7 @@ if __name__ == '__main__':
 
         comment = response_random_comics_json['alt']
         file_path = get_filepath(response_random_comics_json, dir)
-        send_post(file_path, comment, response_img)
+        send_post(file_path, comment, response_img, chat_id, tg_token)
 
     finally:
         os.remove(file_path)
