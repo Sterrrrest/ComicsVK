@@ -21,16 +21,16 @@ if __name__ == '__main__':
     try:
         last_comics_url = 'https://xkcd.com/info.0.json'
 
-        random_url_response = f'https://xkcd.com/{get_random_comics(last_comics_url)}/info.0.json'
-        random_comics_response = requests.get(random_url_response)
-        random_comics_response.raise_for_status()
+        random_url = f'https://xkcd.com/{get_random_comics(last_comics_url)}/info.0.json'
+        random_url_response = requests.get(random_url)
+        random_url_response.raise_for_status()
 
-        random_comics_json_response = random_comics_response.json()
-        response_img = requests.get(random_comics_json_response['img'])
+        random_comics_response = random_url_response.json()
+        response_img = requests.get(random_comics_response['img'])
         response_img.raise_for_status()
 
-        comment = random_comics_json_response['alt']
-        file_path = get_filepath(random_comics_json_response, dir)
+        comment = random_comics_response['alt']
+        file_path = get_filepath(random_comics_response, dir)
         send_post(file_path, comment, response_img, chat_id, tg_token)
 
     finally:
