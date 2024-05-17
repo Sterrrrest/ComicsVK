@@ -15,14 +15,14 @@ def send_post(file_path, comment, response_img, chat_id, tg_token):
     bot.send_message(chat_id=chat_id, text=comment)
 
 
-def get_random_comics(url):
+def get_random_comic(url):
 
-    response_last_comics = requests.get(url)
-    response_last_comics.raise_for_status()
-    last_comics = response_last_comics.json()['num']
-    random_comics = random.choice(range(1, last_comics))
+    response_last_comic = requests.get(url)
+    response_last_comic.raise_for_status()
+    last_comic = response_last_comic.json()['num']
+    random_comic = random.choice(range(1, last_comic))
 
-    return random_comics
+    return random_comic
 
 
 def get_filepath(response, dir):

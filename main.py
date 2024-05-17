@@ -4,7 +4,7 @@ import os
 
 from environs import Env
 from pathlib import Path
-from functions import send_post, get_random_comics, get_filepath
+from functions import send_post, get_random_comic, get_filepath
 
 
 if __name__ == '__main__':
@@ -19,18 +19,18 @@ if __name__ == '__main__':
     Path(dir).mkdir(parents=True, exist_ok=True)
 
     try:
-        last_comics_url = 'https://xkcd.com/info.0.json'
+        last_comic_url = 'https://xkcd.com/info.0.json'
 
-        random_url = f'https://xkcd.com/{get_random_comics(last_comics_url)}/info.0.json'
+        random_url = f'https://xkcd.com/{get_random_comic(last_comic_url)}/info.0.json'
         random_url_response = requests.get(random_url)
         random_url_response.raise_for_status()
 
-        random_comics_response = random_url_response.json()
-        response_img = requests.get(random_comics_response['img'])
+        random_comic_response = random_url_response.json()
+        response_img = requests.get(random_comic_response['img'])
         response_img.raise_for_status()
 
-        comment = random_comics_response['alt']
-        file_path = get_filepath(random_comics_response, dir)
+        comment = random_comic_response['alt']
+        file_path = get_filepath(random_comic_response, dir)
         send_post(file_path, comment, response_img, chat_id, tg_token)
 
     finally:
